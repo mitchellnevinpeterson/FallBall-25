@@ -69,11 +69,7 @@
       margin: 0 auto;
       padding: 24px;
     }
-    header.hero {
-      min-height: 92vh;
-      display: grid;
-      align-items: center;
-      text-align: center;
+    header.hero { min-height: 92vh; display: grid; align-items: center; text-align: center; margin-top: -225px;
     }
     .brand {
       font-family: "Playfair Display", serif;
@@ -262,6 +258,18 @@
       100% { rotate: var(--spin, 360deg); }
     }
 
+  
+    /* Top poster section */
+    .poster { position: relative; z-index: -1; display: flex; justify-content: center; padding: 10px 10px 10px;
+    }
+    .poster img {
+      display: block;
+      width: 100%;
+      max-width: min(500px, 70vw); /* smaller poster */
+      height: auto;
+      /* natural look: no border, no shadow, no rounding */
+    }
+
   </style>
 </head>
 <body>
@@ -272,6 +280,10 @@
   <div class="leaves" aria-hidden="true">
     <span style="left:0.0vw; font-size:18px; animation-duration:7s, 4.0s, 6s; --xdrift:25px; --xsway:14px; --spin:180deg;">🍁</span><span style="left:2.5vw; font-size:21px; animation-duration:8s, 4.6s, 7s; --xdrift:-25px; --xsway:19px; --spin:270deg;">🍂</span><span style="left:5.0vw; font-size:24px; animation-duration:9s, 5.2s, 8s; --xdrift:25px; --xsway:24px; --spin:360deg;">🍁</span><span style="left:7.5vw; font-size:27px; animation-duration:10s, 5.8s, 9s; --xdrift:-25px; --xsway:14px; --spin:450deg;">🍂</span><span style="left:10.0vw; font-size:30px; animation-duration:11s, 6.4s, 10s; --xdrift:25px; --xsway:19px; --spin:540deg;">🍁</span><span style="left:12.5vw; font-size:33px; animation-duration:12s, 4.0s, 11s; --xdrift:-25px; --xsway:24px; --spin:180deg;">🍂</span><span style="left:15.0vw; font-size:18px; animation-duration:13s, 4.6s, 6s; --xdrift:25px; --xsway:14px; --spin:270deg;">🍁</span><span style="left:17.5vw; font-size:21px; animation-duration:14s, 5.2s, 7s; --xdrift:-25px; --xsway:19px; --spin:360deg;">🍂</span><span style="left:20.0vw; font-size:24px; animation-duration:7s, 5.8s, 8s; --xdrift:25px; --xsway:24px; --spin:450deg;">🍁</span><span style="left:22.5vw; font-size:27px; animation-duration:8s, 6.4s, 9s; --xdrift:-25px; --xsway:14px; --spin:540deg;">🍂</span><span style="left:25.0vw; font-size:30px; animation-duration:9s, 4.0s, 10s; --xdrift:25px; --xsway:19px; --spin:180deg;">🍁</span><span style="left:27.5vw; font-size:33px; animation-duration:10s, 4.6s, 11s; --xdrift:-25px; --xsway:24px; --spin:270deg;">🍂</span><span style="left:30.0vw; font-size:18px; animation-duration:11s, 5.2s, 6s; --xdrift:25px; --xsway:14px; --spin:360deg;">🍁</span><span style="left:32.5vw; font-size:21px; animation-duration:12s, 5.8s, 7s; --xdrift:-25px; --xsway:19px; --spin:450deg;">🍂</span><span style="left:35.0vw; font-size:24px; animation-duration:13s, 6.4s, 8s; --xdrift:25px; --xsway:24px; --spin:540deg;">🍁</span><span style="left:37.5vw; font-size:27px; animation-duration:14s, 4.0s, 9s; --xdrift:-25px; --xsway:14px; --spin:180deg;">🍂</span><span style="left:40.0vw; font-size:30px; animation-duration:7s, 4.6s, 10s; --xdrift:25px; --xsway:19px; --spin:270deg;">🍁</span><span style="left:42.5vw; font-size:33px; animation-duration:8s, 5.2s, 11s; --xdrift:-25px; --xsway:24px; --spin:360deg;">🍂</span><span style="left:45.0vw; font-size:18px; animation-duration:9s, 5.8s, 6s; --xdrift:25px; --xsway:14px; --spin:450deg;">🍁</span><span style="left:47.5vw; font-size:21px; animation-duration:10s, 6.4s, 7s; --xdrift:-25px; --xsway:19px; --spin:540deg;">🍂</span><span style="left:50.0vw; font-size:24px; animation-duration:11s, 4.0s, 8s; --xdrift:25px; --xsway:24px; --spin:180deg;">🍁</span><span style="left:52.5vw; font-size:27px; animation-duration:12s, 4.6s, 9s; --xdrift:-25px; --xsway:14px; --spin:270deg;">🍂</span><span style="left:55.0vw; font-size:30px; animation-duration:13s, 5.2s, 10s; --xdrift:25px; --xsway:19px; --spin:360deg;">🍁</span><span style="left:57.5vw; font-size:33px; animation-duration:14s, 5.8s, 11s; --xdrift:-25px; --xsway:24px; --spin:450deg;">🍂</span><span style="left:60.0vw; font-size:18px; animation-duration:7s, 6.4s, 6s; --xdrift:25px; --xsway:14px; --spin:540deg;">🍁</span><span style="left:62.5vw; font-size:21px; animation-duration:8s, 4.0s, 7s; --xdrift:-25px; --xsway:19px; --spin:180deg;">🍂</span><span style="left:65.0vw; font-size:24px; animation-duration:9s, 4.6s, 8s; --xdrift:25px; --xsway:24px; --spin:270deg;">🍁</span><span style="left:67.5vw; font-size:27px; animation-duration:10s, 5.2s, 9s; --xdrift:-25px; --xsway:14px; --spin:360deg;">🍂</span><span style="left:70.0vw; font-size:30px; animation-duration:11s, 5.8s, 10s; --xdrift:25px; --xsway:19px; --spin:450deg;">🍁</span><span style="left:72.5vw; font-size:33px; animation-duration:12s, 6.4s, 11s; --xdrift:-25px; --xsway:24px; --spin:540deg;">🍂</span><span style="left:75.0vw; font-size:18px; animation-duration:13s, 4.0s, 6s; --xdrift:25px; --xsway:14px; --spin:180deg;">🍁</span><span style="left:77.5vw; font-size:21px; animation-duration:14s, 4.6s, 7s; --xdrift:-25px; --xsway:19px; --spin:270deg;">🍂</span><span style="left:80.0vw; font-size:24px; animation-duration:7s, 5.2s, 8s; --xdrift:25px; --xsway:24px; --spin:360deg;">🍁</span><span style="left:82.5vw; font-size:27px; animation-duration:8s, 5.8s, 9s; --xdrift:-25px; --xsway:14px; --spin:450deg;">🍂</span><span style="left:85.0vw; font-size:30px; animation-duration:9s, 6.4s, 10s; --xdrift:25px; --xsway:19px; --spin:540deg;">🍁</span><span style="left:87.5vw; font-size:33px; animation-duration:10s, 4.0s, 11s; --xdrift:-25px; --xsway:24px; --spin:180deg;">🍂</span><span style="left:90.0vw; font-size:18px; animation-duration:11s, 4.6s, 6s; --xdrift:25px; --xsway:14px; --spin:270deg;">🍁</span><span style="left:92.5vw; font-size:21px; animation-duration:12s, 5.2s, 7s; --xdrift:-25px; --xsway:19px; --spin:360deg;">🍂</span><span style="left:95.0vw; font-size:24px; animation-duration:13s, 5.8s, 8s; --xdrift:25px; --xsway:24px; --spin:450deg;">🍁</span><span style="left:97.5vw; font-size:27px; animation-duration:14s, 6.4s, 9s; --xdrift:-25px; --xsway:14px; --spin:540deg;">🍂</span>
   </div>
+
+  <section class="poster" aria-label="Event poster">
+    <img src="poster.jpg" alt="Stanford Fall Ball 2025 event poster" loading="eager" />
+  </section>
 
   <header class="hero">
     <div class="container">
