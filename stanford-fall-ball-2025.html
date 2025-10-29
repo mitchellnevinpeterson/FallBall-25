@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stanford Fall Ball 2025 - Autumn’s Last Dance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600..900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --glass: 255,255,255;
+      --accent: #e66a24; /* autumn orange */
+      --accent-2: #6fb3ff; /* winter blue */
+      --text: #f7f7fb;
+      --muted: #e9ecf5;
+      --shadow: rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      line-height: 1.6;
+     background: transparent !important; }
+    /* Background image with soft vignette + gradient split overlay for fall/winter */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('Fall_Ball-25.jpg') center center / cover no-repeat fixed;
+      z-index: -3;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      z-index: -2;
+      pointer-events: none;
+    }
+    /* Subtle falling flecks (leaves/snow) */
+    .sparkles { z-index: 0;
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .sparkles span {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      opacity: .75;
+      filter: blur(.3px);
+      animation: drift linear infinite;
+    }
+    @keyframes drift {
+      0% { transform: translateY(-10vh) translateX(0); opacity:.0; }
+      10% { opacity:.9; }
+      100% { transform: translateY(70vh) translateX(var(--offset, 36px)); opacity:0; }
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    header.hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      text-align: center;
+    }
+    .brand {
+      font-family: "Playfair Display", serif;
+      letter-spacing: .5px;
+      font-weight: 800;
+      font-size: clamp(34px, 5vw, 60px);
+      line-height: 1.1;
+      text-shadow: 0 12px 40px var(--shadow);
+    }
+    .sub {
+      max-width: 760px;
+      margin: 12px auto 26px;
+      font-size: clamp(16px, 2.4vw, 20px);
+      color: var(--muted);
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(230,106,36,.25), rgba(111,179,255,.25));
+      border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(4px);
+      font-weight: 600;
+    }
+    .glass {
+      background: rgba(var(--glass), .10);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px var(--shadow);
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      margin-top: 8px;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #0b1020;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+    section#details {
+      margin: 40px 0 80px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+    .card {
+      grid-column: span 6;
+      padding: 22px;
+    }
+    .card h3 {
+      margin: 0 0 6px 0;
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      letter-spacing: .2px;
+    }
+    .card p, .card li { color: #f1f3f8; }
+    ul.clean { list-style: none; margin: 0; padding: 0; }
+    ul.clean li::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 8px;
+    }
+    @media (max-width: 880px) {
+      .card { grid-column: span 12; }
+    }
+    .tickets {
+      margin: 10px auto 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .tickets .price {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 12px 0 6px;
+    }
+    .pill {
+      border-radius: 999px;
+      padding: 6px 12px;
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.07);
+      margin: 4px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 10px 60px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  
+    /* GIF section styling */
+    .gif-section {
+      margin: 10px auto 30px;
+      padding: 18px;
+      text-align: center;
+    }
+    .gif-wrap {
+      display: inline-block;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(0,0,0,.15);
+      box-shadow: 0 12px 32px rgba(0,0,0,.35);
+      animation: fadeIn 1.2s ease both, floaty 8s ease-in-out infinite;
+    }
+    .gif-wrap img {
+      display: block;
+      max-width: min(720px, 90vw);
+      height: auto;
+      opacity: .95;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px) scale(.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-6px); }
+    }
+    /* Compact floating audio control */
+    .audio-control {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 700;
+      background: rgba(255,255,255,.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.35);
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+    .audio-control:active { transform: scale(.98); }
+
+  
+    /* 🍁 Autumn leaves layer */
+    .leaves { z-index: 0;
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .leaves span {
+      position: absolute;
+      will-change: transform, opacity;
+      display: inline-block;
+      line-height: 1;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,.35));
+      opacity: .95;
+      animation: leaf-fall linear infinite, leaf-sway ease-in-out infinite, leaf-spin linear infinite;
+    }
+    @keyframes leaf-fall {
+      0%   { transform: translateY(-12vh) translateX(0) rotate(0deg); opacity: 0; }
+      8%   { opacity: 1; }
+      100% { transform: translateY(100vh) translateX(var(--xdrift, 0px)) rotate(360deg); opacity: .95; }
+    }
+    @keyframes leaf-sway {
+      0%,100% { transform: translateX(0); }
+      50%     { transform: translateX(var(--xsway, 18px)); }
+    }
+    @keyframes leaf-spin {
+      0%   { rotate: 0deg; }
+      100% { rotate: var(--spin, 360deg); }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="sparkles" aria-hidden="true">
+    <!-- generate floating particles -->
+    <span style="left:3vw; animation-duration:8s; --offset:40px;"></span><span style="left:9vw; animation-duration:9s; --offset:-40px;"></span><span style="left:15vw; animation-duration:10s; --offset:40px;"></span><span style="left:21vw; animation-duration:11s; --offset:-40px;"></span><span style="left:27vw; animation-duration:12s; --offset:40px;"></span><span style="left:33vw; animation-duration:13s; --offset:-40px;"></span><span style="left:39vw; animation-duration:14s; --offset:40px;"></span><span style="left:45vw; animation-duration:8s; --offset:-40px;"></span><span style="left:51vw; animation-duration:9s; --offset:40px;"></span><span style="left:57vw; animation-duration:10s; --offset:-40px;"></span><span style="left:63vw; animation-duration:11s; --offset:40px;"></span><span style="left:69vw; animation-duration:12s; --offset:-40px;"></span><span style="left:75vw; animation-duration:13s; --offset:40px;"></span><span style="left:81vw; animation-duration:14s; --offset:-40px;"></span><span style="left:87vw; animation-duration:8s; --offset:40px;"></span><span style="left:93vw; animation-duration:9s; --offset:-40px;"></span><span style="left:99vw; animation-duration:10s; --offset:40px;"></span><span style="left:105vw; animation-duration:11s; --offset:-40px;"></span><span style="left:111vw; animation-duration:12s; --offset:40px;"></span><span style="left:117vw; animation-duration:13s; --offset:-40px;"></span><span style="left:123vw; animation-duration:14s; --offset:40px;"></span><span style="left:129vw; animation-duration:8s; --offset:-40px;"></span><span style="left:135vw; animation-duration:9s; --offset:40px;"></span><span style="left:141vw; animation-duration:10s; --offset:-40px;"></span>
+  </div>
+  <div class="leaves" aria-hidden="true">
+    <span style="left:0.0vw; font-size:18px; animation-duration:7s, 4.0s, 6s; --xdrift:25px; --xsway:14px; --spin:180deg;">🍁</span><span style="left:2.5vw; font-size:21px; animation-duration:8s, 4.6s, 7s; --xdrift:-25px; --xsway:19px; --spin:270deg;">🍂</span><span style="left:5.0vw; font-size:24px; animation-duration:9s, 5.2s, 8s; --xdrift:25px; --xsway:24px; --spin:360deg;">🍁</span><span style="left:7.5vw; font-size:27px; animation-duration:10s, 5.8s, 9s; --xdrift:-25px; --xsway:14px; --spin:450deg;">🍂</span><span style="left:10.0vw; font-size:30px; animation-duration:11s, 6.4s, 10s; --xdrift:25px; --xsway:19px; --spin:540deg;">🍁</span><span style="left:12.5vw; font-size:33px; animation-duration:12s, 4.0s, 11s; --xdrift:-25px; --xsway:24px; --spin:180deg;">🍂</span><span style="left:15.0vw; font-size:18px; animation-duration:13s, 4.6s, 6s; --xdrift:25px; --xsway:14px; --spin:270deg;">🍁</span><span style="left:17.5vw; font-size:21px; animation-duration:14s, 5.2s, 7s; --xdrift:-25px; --xsway:19px; --spin:360deg;">🍂</span><span style="left:20.0vw; font-size:24px; animation-duration:7s, 5.8s, 8s; --xdrift:25px; --xsway:24px; --spin:450deg;">🍁</span><span style="left:22.5vw; font-size:27px; animation-duration:8s, 6.4s, 9s; --xdrift:-25px; --xsway:14px; --spin:540deg;">🍂</span><span style="left:25.0vw; font-size:30px; animation-duration:9s, 4.0s, 10s; --xdrift:25px; --xsway:19px; --spin:180deg;">🍁</span><span style="left:27.5vw; font-size:33px; animation-duration:10s, 4.6s, 11s; --xdrift:-25px; --xsway:24px; --spin:270deg;">🍂</span><span style="left:30.0vw; font-size:18px; animation-duration:11s, 5.2s, 6s; --xdrift:25px; --xsway:14px; --spin:360deg;">🍁</span><span style="left:32.5vw; font-size:21px; animation-duration:12s, 5.8s, 7s; --xdrift:-25px; --xsway:19px; --spin:450deg;">🍂</span><span style="left:35.0vw; font-size:24px; animation-duration:13s, 6.4s, 8s; --xdrift:25px; --xsway:24px; --spin:540deg;">🍁</span><span style="left:37.5vw; font-size:27px; animation-duration:14s, 4.0s, 9s; --xdrift:-25px; --xsway:14px; --spin:180deg;">🍂</span><span style="left:40.0vw; font-size:30px; animation-duration:7s, 4.6s, 10s; --xdrift:25px; --xsway:19px; --spin:270deg;">🍁</span><span style="left:42.5vw; font-size:33px; animation-duration:8s, 5.2s, 11s; --xdrift:-25px; --xsway:24px; --spin:360deg;">🍂</span><span style="left:45.0vw; font-size:18px; animation-duration:9s, 5.8s, 6s; --xdrift:25px; --xsway:14px; --spin:450deg;">🍁</span><span style="left:47.5vw; font-size:21px; animation-duration:10s, 6.4s, 7s; --xdrift:-25px; --xsway:19px; --spin:540deg;">🍂</span><span style="left:50.0vw; font-size:24px; animation-duration:11s, 4.0s, 8s; --xdrift:25px; --xsway:24px; --spin:180deg;">🍁</span><span style="left:52.5vw; font-size:27px; animation-duration:12s, 4.6s, 9s; --xdrift:-25px; --xsway:14px; --spin:270deg;">🍂</span><span style="left:55.0vw; font-size:30px; animation-duration:13s, 5.2s, 10s; --xdrift:25px; --xsway:19px; --spin:360deg;">🍁</span><span style="left:57.5vw; font-size:33px; animation-duration:14s, 5.8s, 11s; --xdrift:-25px; --xsway:24px; --spin:450deg;">🍂</span><span style="left:60.0vw; font-size:18px; animation-duration:7s, 6.4s, 6s; --xdrift:25px; --xsway:14px; --spin:540deg;">🍁</span><span style="left:62.5vw; font-size:21px; animation-duration:8s, 4.0s, 7s; --xdrift:-25px; --xsway:19px; --spin:180deg;">🍂</span><span style="left:65.0vw; font-size:24px; animation-duration:9s, 4.6s, 8s; --xdrift:25px; --xsway:24px; --spin:270deg;">🍁</span><span style="left:67.5vw; font-size:27px; animation-duration:10s, 5.2s, 9s; --xdrift:-25px; --xsway:14px; --spin:360deg;">🍂</span><span style="left:70.0vw; font-size:30px; animation-duration:11s, 5.8s, 10s; --xdrift:25px; --xsway:19px; --spin:450deg;">🍁</span><span style="left:72.5vw; font-size:33px; animation-duration:12s, 6.4s, 11s; --xdrift:-25px; --xsway:24px; --spin:540deg;">🍂</span><span style="left:75.0vw; font-size:18px; animation-duration:13s, 4.0s, 6s; --xdrift:25px; --xsway:14px; --spin:180deg;">🍁</span><span style="left:77.5vw; font-size:21px; animation-duration:14s, 4.6s, 7s; --xdrift:-25px; --xsway:19px; --spin:270deg;">🍂</span><span style="left:80.0vw; font-size:24px; animation-duration:7s, 5.2s, 8s; --xdrift:25px; --xsway:24px; --spin:360deg;">🍁</span><span style="left:82.5vw; font-size:27px; animation-duration:8s, 5.8s, 9s; --xdrift:-25px; --xsway:14px; --spin:450deg;">🍂</span><span style="left:85.0vw; font-size:30px; animation-duration:9s, 6.4s, 10s; --xdrift:25px; --xsway:19px; --spin:540deg;">🍁</span><span style="left:87.5vw; font-size:33px; animation-duration:10s, 4.0s, 11s; --xdrift:-25px; --xsway:24px; --spin:180deg;">🍂</span><span style="left:90.0vw; font-size:18px; animation-duration:11s, 4.6s, 6s; --xdrift:25px; --xsway:14px; --spin:270deg;">🍁</span><span style="left:92.5vw; font-size:21px; animation-duration:12s, 5.2s, 7s; --xdrift:-25px; --xsway:19px; --spin:360deg;">🍂</span><span style="left:95.0vw; font-size:24px; animation-duration:13s, 5.8s, 8s; --xdrift:25px; --xsway:24px; --spin:450deg;">🍁</span><span style="left:97.5vw; font-size:27px; animation-duration:14s, 6.4s, 9s; --xdrift:-25px; --xsway:14px; --spin:540deg;">🍂</span>
+  </div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="tag glass" aria-label="Theme">
+        <span>🍁 Autumn’s Last Dance · ❄️ Winter’s First Whisper</span>
+      </div>
+      <h1 class="brand">Stanford Fall Ball 2025</h1>
+      <p class="sub">Dearest dancers, dreamers, and devotees of delight-join us for an evening steeped in magic, mystique, and movement, inspired by Samhain, where autumn’s final glow meets winter’s first chill.</p>
+      <a class="cta" href="#tickets" aria-label="Purchase tickets link">🎟️ Purchase Tickets</a>
+    </div>
+  </header>
+
+  <main class="container" id="details" aria-labelledby="details-title">
+    <h2 id="details-title" class="sr-only">Event details</h2>
+    <div class="grid">
+      <article class="card glass" aria-labelledby="when-title">
+        <h3 id="when-title">📅 When</h3>
+        <p><strong>Friday, November 7, 2025</strong></p>
+        <ul class="clean">
+          <li><strong>8:00–9:00 PM</strong>: Beginner Cross‑Step Waltz lesson (included!)</li>
+          <li><strong>9:00 PM–Midnight</strong>: The Ball</li>
+        </ul>
+      </article>
+
+      <article class="card glass" aria-labelledby="where-title">
+        <h3 id="where-title">📍 Where</h3>
+        <p><strong>Roble Dance Studio</strong><br/>
+        Room 113, 375 Santa Teresa Street, Stanford, CA</p>
+        <p class="pill">No partner required</p>
+        <p class="pill">No experience expected</p>
+        <p class="pill">Socks or dance shoes only (no street shoes)</p>
+      </article>
+
+      <article class="card glass" aria-labelledby="dress-title">
+        <h3 id="dress-title">👗 Dress Code</h3>
+        <ul class="clean">
+          <li>Dress in <strong>fall</strong> or <strong>winter</strong> colors - either, or both!</li>
+          <li>Or come as you are and let your spirit do the twirling.</li>
+        </ul>
+        <p class="pill">🍕 Pizza & snacks included</p>
+        <p class="pill">✨ Magic optional · Joy guaranteed</p>
+      </article>
+
+      <article class="card glass tickets" id="tickets" aria-labelledby="tickets-title">
+        <h3 id="tickets-title">🎟️ Tickets</h3>
+        <div class="price">
+          <div class="glass" style="padding:14px; border-radius:12px;">
+            <strong>$10</strong><br/><span>Stanford Students</span>
+          </div>
+          <div class="glass" style="padding:14px; border-radius:12px;">
+            <strong>$15</strong><br/><span>Everyone else</span>
+          </div>
+        </div>
+        <a class="cta" href="http://fallball25.eventbrite.com" target="_blank" rel="noopener">👉 PURCHASE YOUR TICKETS HERE</a>
+      </article>
+    </div>
+  </main>
+
+  
+  <section class="container gif-section" aria-labelledby="gif-title">
+    <h2 id="gif-title" class="sr-only">Seasonal GIF</h2>
+    <div class="gif-wrap glass">
+      <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExazhhcHo1MWx5c2RuZ2w1bXM2ZnEwdHduanUyYjV2b2FqN2doa2h3NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eHFVJfUkZBwHOMxXcB/giphy.gif" alt="Animated snowman and seasonal sparkle GIF" loading="lazy" />
+    </div>
+  </section>
+
+  <footer>
+      <div class="card glass" style="max-width:720px;margin:0 auto;padding:28px;font-size:20px;text-align:center;line-height:1.7;">
+        <p>So gather your friends, don your coziest sweater or most glamorous gown, and dance with us through the turning of the seasons. The night is fleeting, and autumn never dances twice.</p>
+      </div>
+    </footer>
+
+  <!-- Background music -->
+  <audio id="bgm" src="swing.mp3" preload="auto" loop muted></audio>
+  <button class="audio-control" id="audioToggle" aria-label="Toggle background music">♫ Music</button>
+  <script>
+    (function(){
+      const audio = document.getElementById('bgm');
+      const btn = document.getElementById('audioToggle');
+      if (!audio || !btn) return;
+      audio.volume = 0.35;
+      function tryPlay(){ audio.muted=false; audio.play().catch(()=>{}); }
+      // Attempt autoplay; add gesture-based fallback
+      document.addEventListener('DOMContentLoaded', tryPlay);
+      const unlock = () => { tryPlay(); document.removeEventListener('pointerdown', unlock); document.removeEventListener('keydown', unlock); };
+      document.addEventListener('pointerdown', unlock);
+      document.addEventListener('keydown', unlock);
+      // Toggle UI
+      btn.addEventListener('click', () => {
+        if (audio.paused) { audio.play(); btn.textContent = '⏸︎ Pause'; }
+        else { audio.pause(); btn.textContent = '▶︎ Play'; }
+      });
+      // Set initial label after a brief moment
+      setTimeout(() => { btn.textContent = audio.paused ? '▶︎ Play' : '⏸︎ Pause'; }, 800);
+    })();
+  </script>
+
+</body>
+</html>
